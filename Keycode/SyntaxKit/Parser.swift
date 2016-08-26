@@ -21,7 +21,7 @@ public class Parser {
 
     // MARK: - Properties
 
-    public let language: Language
+    public var language: Language
 
     var string = ""
     var aborted = false

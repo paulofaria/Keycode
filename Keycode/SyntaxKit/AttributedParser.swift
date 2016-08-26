@@ -12,7 +12,7 @@
 
 import Foundation
 
-public class AttributedParser: Parser {
+public class AttributedParser : Parser {
     
     // MARK: - Types
     
@@ -21,7 +21,7 @@ public class AttributedParser: Parser {
     
     // MARK: - Properties
 
-    public let theme: Theme
+    public var theme: Theme
     
     
     // MARK: - Initializers

@@ -1,23 +1,27 @@
 import Cocoa
 
-extension CGSize {
-    static let unit = CGSize(width: 1, height: 1)
-    static let infinite = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-}
-
 final class TextView : NSTextView {
+    let defaultFontSize: CGFloat = 18
+    let defaultTextContainerInset = NSSize(width: 0.0, height: 4.0)
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configureTextView()
+    }
 
-        self.textContainerInset = NSSize(width: 0.0, height: 4.0)
+    func configureTextView() {
+        self.textContainerInset = defaultTextContainerInset
+        self.font = lastFont() ?? defaultFont()
+    }
 
-        let font: NSFont? = {
-            let fontName = userDefaults[.fontName] ?? ""
-            let fontSize = userDefaults[.fontSize]
-            return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize)
-        }()
+    func lastFont() -> NSFont? {
+        let fontName = userDefaults[.fontName] ?? ""
+        let fontSize = userDefaults[.fontSize]
+        return NSFont(name: fontName, size: fontSize)
+    }
 
-        super.font = font
+    func defaultFont() -> NSFont? {
+        return NSFont.userFont(ofSize: defaultFontSize)
     }
 
     override func changeFont(_ sender: Any?) {
@@ -30,12 +34,9 @@ final class TextView : NSTextView {
         }
 
         let font = manager.convert(currentFont)
+        textStorage.font = font
 
         userDefaults[.fontName] = font.fontName
         userDefaults[.fontSize] = font.pointSize
-
-        for layoutManager in textStorage.layoutManagers {
-            layoutManager.firstTextView?.font = font
-        }
     }
 }

@@ -133,16 +133,15 @@
 		B044E67B1D6CE3A2002F763B /* Keycode */ = {
 			isa = PBXGroup;
 			children = (
+				B0FF2CC11D6FBDF800E556E8 /* Support */,
 				B0FF2C771D6E94E900E556E8 /* SyntaxKit */,
 				B044E67C1D6CE3A2002F763B /* AppDelegate.swift */,
 				B044E6821D6CE3A2002F763B /* Assets.xcassets */,
 				B044E6841D6CE3A2002F763B /* Main.storyboard */,
 				B044E6871D6CE3A2002F763B /* Info.plist */,
-				B0FF2C751D6E5DDF00E556E8 /* UserDefaults.swift */,
 				B07A04B81D6D3A8100FEA96B /* WindowController.swift */,
 				B0FF2CBD1D6EC13C00E556E8 /* ViewController.swift */,
 				B0FF2C731D6E337D00E556E8 /* TextView.swift */,
-				B0FF2CBF1D6FA41F00E556E8 /* FileManager.swift */,
 			);
 			path = Keycode;
 			sourceTree = "<group>";
@@ -185,6 +184,15 @@
 				B0FF2C9C1D6E94E900E556E8 /* Theme.swift */,
 			);
 			path = SyntaxKit;
+			sourceTree = "<group>";
+		};
+		B0FF2CC11D6FBDF800E556E8 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				B0FF2C751D6E5DDF00E556E8 /* UserDefaults.swift */,
+				B0FF2CBF1D6FA41F00E556E8 /* FileManager.swift */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

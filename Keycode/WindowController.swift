@@ -1,50 +1,58 @@
 import Cocoa
 
-class WindowController: NSWindowController {
+class WindowController : NSWindowController {
     @IBOutlet weak var languagePopUpButton: NSPopUpButton!
     @IBOutlet weak var themePopUpButton: NSPopUpButton!
 
     let pasteboard = NSPasteboard.general()
 
     var languages: [String] = []
-    var themes: [String] = []
+    var language: String!
 
-    var language = userDefaults[.languageName] ?? ""
-    var theme = userDefaults[.themeName] ?? ""
-    
+    var themes: [String] = []
+    var theme: String!
+
     override func windowDidLoad() {
         super.windowDidLoad()
+        configureLanguage()
+        configureTheme()
+        configureParser()
         configureWindow()
         configureToolbar()
     }
+}
 
-    @IBAction func copy(_ sender: NSToolbarItem) {
+extension WindowController {
+    func configureLanguage() {
+        let languageDirectory = try! FileManager.supportDirectory("Languages")
+
+        languages = try! FileManager.default.contentsOfDirectory(atPath: languageDirectory)
+            .filter({$0.hasSuffix(".tmLanguage")})
+            .filter({!FileManager.isDirectory((languageDirectory as NSString).appendingPathComponent($0))})
+            .map({($0 as NSString).deletingPathExtension})
+
+        language = userDefaults[.languageName] ?? languages.first!
+    }
+
+    func configureTheme() {
+        let themeDirectory = try! FileManager.supportDirectory("Themes")
+
+        themes = try! FileManager.default.contentsOfDirectory(atPath: themeDirectory)
+            .filter({$0.hasSuffix(".tmTheme")})
+            .filter({!FileManager.isDirectory((themeDirectory as NSString).appendingPathComponent($0))})
+            .map({($0 as NSString).deletingPathExtension})
+
+        theme = userDefaults[.themeName] ?? themes.first!
+    }
+
+    func configureParser() {
         guard
             let viewController = contentViewController as? ViewController
         else {
             return
         }
 
-        pasteboard.clearContents()
-        pasteboard.writeObjects([viewController.text])
-    }
-
-    @IBAction func changeLanguage(_ sender: AnyObject?) {
-        guard let name = sender?.title, name != self.language else {
-            return
-        }
-
-        language = name
-        userDefaults[.languageName] = name
-    }
-
-    @IBAction func changeTheme(_ sender: AnyObject?) {
-        guard let name = sender?.title, name != self.theme else {
-            return
-        }
-
-        theme = name
-        userDefaults[.themeName] = name
+        viewController.configureParser(language: language, theme: theme)
     }
 }
 
@@ -62,24 +70,11 @@ extension WindowController {
 
 extension WindowController {
     func configureToolbar() {
-        let languageDirectory = try! FileManager.supportDirectory("Languages")
-        let themeDirectory = try! FileManager.supportDirectory("Themes")
-
-        languages = try! FileManager.default.contentsOfDirectory(atPath: languageDirectory)
-            .filter({$0.hasSuffix(".tmLanguage")})
-            .filter({!FileManager.isDirectory((languageDirectory as NSString).appendingPathComponent($0))})
-            .map({($0 as NSString).deletingPathExtension})
-
-        themes = try! FileManager.default.contentsOfDirectory(atPath: themeDirectory)
-            .filter({$0.hasSuffix(".tmTheme")})
-            .filter({!FileManager.isDirectory((languageDirectory as NSString).appendingPathComponent($0))})
-            .map({($0 as NSString).deletingPathExtension})
-
         buildLanguagePopupButton()
-        buildThemePopupButton()
+        selectLanguage()
 
-        invalidateLanguageSelection()
-        invalidateThemeSelection()
+        buildThemePopupButton()
+        selectTheme()
     }
 }
 
@@ -89,25 +84,19 @@ extension WindowController {
             return
         }
 
-        let action = #selector(WindowController.changeLanguage(_:))
-
         menu.removeAllItems()
-
-        menu.addItem(withTitle: "None", action: action, keyEquivalent: "")
-        menu.addItem(NSMenuItem.separator())
+        let action = #selector(WindowController.changeLanguage(_:))
 
         for language in languages {
             menu.addItem(withTitle: language, action: action, keyEquivalent: "")
         }
-
-        self.invalidateLanguageSelection()
     }
 
-    func invalidateLanguageSelection() {
+    func selectLanguage() {
         languagePopUpButton.selectItem(withTitle: language)
 
         if languagePopUpButton.selectedItem == nil {
-            languagePopUpButton.selectItem(at: 0)  // select "None"
+            languagePopUpButton.selectItem(at: 0)
         }
     }
 }
@@ -118,25 +107,58 @@ extension WindowController {
             return
         }
 
-        let action = #selector(WindowController.changeTheme(_:))
-
         menu.removeAllItems()
-
-        menu.addItem(withTitle: "None", action: action, keyEquivalent: "")
-        menu.addItem(NSMenuItem.separator())
+        let action = #selector(WindowController.changeTheme(_:))
 
         for theme in themes {
             menu.addItem(withTitle: theme, action: action, keyEquivalent: "")
         }
-
-        self.invalidateLanguageSelection()
     }
 
-    func invalidateThemeSelection() {
+    func selectTheme() {
         themePopUpButton.selectItem(withTitle: theme)
         
         if themePopUpButton.selectedItem == nil {
-            themePopUpButton.selectItem(at: 0)  // select "None"
+            themePopUpButton.selectItem(at: 0)
         }
+    }
+}
+
+extension WindowController {
+    @IBAction func copy(_ sender: NSToolbarItem) {
+        guard
+            let viewController = contentViewController as? ViewController
+        else {
+            return
+        }
+
+        pasteboard.clearContents()
+        pasteboard.writeObjects([viewController.text])
+    }
+
+    @IBAction func changeLanguage(_ sender: AnyObject?) {
+        guard
+            let title = sender?.title, title != self.language,
+            let viewController = contentViewController as? ViewController
+        else {
+            return
+        }
+
+        language = title
+        userDefaults[.languageName] = title
+        viewController.update(language: title)
+    }
+
+    @IBAction func changeTheme(_ sender: AnyObject?) {
+        guard
+            let title = sender?.title, title != self.theme,
+            let viewController = contentViewController as? ViewController
+        else {
+            return
+        }
+
+        theme = title
+        userDefaults[.themeName] = title
+        viewController.update(theme: title)
     }
 }

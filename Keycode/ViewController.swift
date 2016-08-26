@@ -3,13 +3,20 @@ import AppKit
 final class ViewController : NSViewController, NSTextViewDelegate {
     @IBOutlet var textView: TextView!
 
+    var bundleManager: BundleManager!
     var attributedParser: AttributedParser!
     var text = NSAttributedString()
 
+    var language: String!
+    var theme: String!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureBundleManager()
+    }
 
-        let manager = BundleManager() { identifier, isLanguage in
+    func configureBundleManager() {
+        bundleManager = BundleManager { identifier, isLanguage in
             let prefix: String
             let suffix: String
 
@@ -23,19 +30,44 @@ final class ViewController : NSViewController, NSTextViewDelegate {
 
             return URL(fileURLWithPath: prefix + identifier + suffix)
         }
+    }
 
-        let language = manager.languageWithIdentifier("Swift")!
-        let theme = manager.themeWithIdentifier("Monokai")!
+    func configureParser(language: String, theme: String) {
+        guard
+            let language = bundleManager.languageWithIdentifier(language),
+            let theme = bundleManager.themeWithIdentifier(theme)
+        else {
+            return
+        }
 
         textView.backgroundColor = theme.backgroundColor
         textView.insertionPointColor = theme.foregroundColor
-
         attributedParser = AttributedParser(language: language, theme: theme)
     }
 
     func textDidChange(_ notification: Notification) {
+        updateText()
+    }
+
+    func update(language: String) {
+        attributedParser.language = bundleManager.languageWithIdentifier(language)!
+        updateText()
+    }
+
+    func update(theme: String) {
+        let theme = bundleManager.themeWithIdentifier(theme)!
+        apply(theme: theme)
+        updateText()
+    }
+
+    func apply(theme: Theme) {
+        attributedParser.theme = theme
+        textView.backgroundColor = theme.backgroundColor
+        textView.insertionPointColor = theme.foregroundColor
+    }
+
+    func updateText() {
         guard
-            let textView = notification.object as? NSTextView,
             let rawText = textView.string
         else {
             return
