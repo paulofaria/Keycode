@@ -32,6 +32,9 @@
 		B0FF2CBC1D6E94E900E556E8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FF2C9C1D6E94E900E556E8 /* Theme.swift */; };
 		B0FF2CBE1D6EC13C00E556E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FF2CBD1D6EC13C00E556E8 /* ViewController.swift */; };
 		B0FF2CC01D6FA41F00E556E8 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FF2CBF1D6FA41F00E556E8 /* FileManager.swift */; };
+		B0FF2CC61D6FFE4800E556E8 /* Languages in Resources */ = {isa = PBXBuildFile; fileRef = B0FF2CC41D6FFE4800E556E8 /* Languages */; };
+		B0FF2CC71D6FFE4800E556E8 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = B0FF2CC51D6FFE4800E556E8 /* Themes */; };
+		B0FF2CC91D70030300E556E8 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FF2CC81D70030300E556E8 /* Bundle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +86,9 @@
 		B0FF2C9C1D6E94E900E556E8 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B0FF2CBD1D6EC13C00E556E8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B0FF2CBF1D6FA41F00E556E8 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		B0FF2CC41D6FFE4800E556E8 /* Languages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Languages; path = Keycode/Languages; sourceTree = "<group>"; };
+		B0FF2CC51D6FFE4800E556E8 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Themes; path = Keycode/Themes; sourceTree = "<group>"; };
+		B0FF2CC81D70030300E556E8 /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bundle.swift; path = Support/Bundle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,8 @@
 		B044E6701D6CE3A2002F763B = {
 			isa = PBXGroup;
 			children = (
+				B0FF2CC41D6FFE4800E556E8 /* Languages */,
+				B0FF2CC51D6FFE4800E556E8 /* Themes */,
 				B044E67B1D6CE3A2002F763B /* Keycode */,
 				B044E68F1D6CE3A2002F763B /* KeycodeTests */,
 				B044E69A1D6CE3A2002F763B /* KeycodeUITests */,
@@ -191,6 +199,7 @@
 			children = (
 				B0FF2C751D6E5DDF00E556E8 /* UserDefaults.swift */,
 				B0FF2CBF1D6FA41F00E556E8 /* FileManager.swift */,
+				B0FF2CC81D70030300E556E8 /* Bundle.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -305,6 +314,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0FF2CC71D6FFE4800E556E8 /* Themes in Resources */,
+				B0FF2CC61D6FFE4800E556E8 /* Languages in Resources */,
 				B044E6831D6CE3A2002F763B /* Assets.xcassets in Resources */,
 				B044E6861D6CE3A2002F763B /* Main.storyboard in Resources */,
 			);
@@ -350,6 +361,7 @@
 				B0FF2C9E1D6E94E900E556E8 /* AttributedParsingOperation.swift in Sources */,
 				B0FF2C9D1D6E94E900E556E8 /* AttributedParser.swift in Sources */,
 				B0FF2CA31D6E94E900E556E8 /* Language.swift in Sources */,
+				B0FF2CC91D70030300E556E8 /* Bundle.swift in Sources */,
 				B0FF2CAB1D6E94E900E556E8 /* ScopedString.swift in Sources */,
 				B0FF2CAA1D6E94E900E556E8 /* ResultSet.swift in Sources */,
 			);

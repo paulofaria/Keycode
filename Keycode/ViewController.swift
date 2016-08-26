@@ -21,10 +21,10 @@ final class ViewController : NSViewController, NSTextViewDelegate {
             let suffix: String
 
             if isLanguage {
-                prefix = try! FileManager.supportDirectory("Languages") + "/"
+                prefix = FileManager.supportDirectory("Languages") + "/"
                 suffix = ".tmLanguage"
             } else {
-                prefix = try! FileManager.supportDirectory("Themes") + "/"
+                prefix = FileManager.supportDirectory("Themes") + "/"
                 suffix = ".tmTheme"
             }
 

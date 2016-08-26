@@ -14,6 +14,7 @@ class WindowController : NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
+        configureSupportDirectory()
         configureLanguage()
         configureTheme()
         configureParser()
@@ -23,8 +24,23 @@ class WindowController : NSWindowController {
 }
 
 extension WindowController {
+    func configureSupportDirectory() {
+        if !FileManager.supportDirectoryExists() {
+            try! FileManager.createSupportDirectory()
+
+            let languagesResource = Bundle.resourceDirectory("Languages")
+            let themesResource = Bundle.resourceDirectory("Themes")
+
+            let languagesSupport = FileManager.supportDirectory("Languages")
+            let themesSupport = FileManager.supportDirectory("Themes")
+
+            try! FileManager.default.copyItem(atPath: languagesResource, toPath: languagesSupport)
+            try! FileManager.default.copyItem(atPath: themesResource, toPath: themesSupport)
+        }
+    }
+
     func configureLanguage() {
-        let languageDirectory = try! FileManager.supportDirectory("Languages")
+        let languageDirectory = FileManager.supportDirectory("Languages")
 
         languages = try! FileManager.default.contentsOfDirectory(atPath: languageDirectory)
             .filter({$0.hasSuffix(".tmLanguage")})
@@ -35,7 +51,7 @@ extension WindowController {
     }
 
     func configureTheme() {
-        let themeDirectory = try! FileManager.supportDirectory("Themes")
+        let themeDirectory = FileManager.supportDirectory("Themes")
 
         themes = try! FileManager.default.contentsOfDirectory(atPath: themeDirectory)
             .filter({$0.hasSuffix(".tmTheme")})

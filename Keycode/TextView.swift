@@ -12,6 +12,12 @@ final class TextView : NSTextView {
     func configureTextView() {
         self.textContainerInset = defaultTextContainerInset
         self.font = lastFont() ?? defaultFont()
+        self.isAutomaticQuoteSubstitutionEnabled = false
+        self.isAutomaticDashSubstitutionEnabled = false
+        self.isAutomaticTextReplacementEnabled = false
+        self.isAutomaticDataDetectionEnabled = false
+        self.isAutomaticLinkDetectionEnabled = false
+        self.isAutomaticSpellingCorrectionEnabled = false
     }
 
     func lastFont() -> NSFont? {
