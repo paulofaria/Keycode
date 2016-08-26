@@ -311,7 +311,7 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" explicitItemIdentifier="NSFontPanel" id="vBx-lE-MfZ"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="iTy-wo-UBV"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="11j-92-EXC"/>
-                                <toolbarItem implicitItemIdentifier="DCEBD18B-86EB-4630-90BA-94BC29A59E46" explicitItemIdentifier="copyItemID" label="Copy" paletteLabel="Copy" tag="3" image="NSMultipleDocuments" id="yEa-JB-w9L">
+                                <toolbarItem implicitItemIdentifier="DCEBD18B-86EB-4630-90BA-94BC29A59E46" explicitItemIdentifier="copyItemID" label="Copy" paletteLabel="Copy" tag="3" image="Copy" id="yEa-JB-w9L">
                                     <connections>
                                         <action selector="copy:" target="jGA-0Y-lOj" id="bXb-TS-q21"/>
                                     </connections>
@@ -426,6 +426,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSMultipleDocuments" width="32" height="32"/>
+        <image name="Copy" width="1024" height="1024"/>
     </resources>
 </document>
