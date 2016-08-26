@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89E26BCF1D70708600909137 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E26BCE1D70708600909137 /* Services.swift */; };
+		89E26BD11D70789500909137 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E26BD01D70789500909137 /* Repo.swift */; };
+		89E26BD31D70868600909137 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E26BD21D70868600909137 /* Themes.swift */; };
 		B044E67D1D6CE3A2002F763B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044E67C1D6CE3A2002F763B /* AppDelegate.swift */; };
 		B044E6831D6CE3A2002F763B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B044E6821D6CE3A2002F763B /* Assets.xcassets */; };
 		B044E6861D6CE3A2002F763B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B044E6841D6CE3A2002F763B /* Main.storyboard */; };
@@ -55,6 +58,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		89E26BCE1D70708600909137 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Services.swift; path = Support/Services.swift; sourceTree = "<group>"; };
+		89E26BD01D70789500909137 /* Repo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repo.swift; path = Support/Repo.swift; sourceTree = "<group>"; };
+		89E26BD21D70868600909137 /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Themes.swift; path = Support/Themes.swift; sourceTree = "<group>"; };
 		B044E6791D6CE3A2002F763B /* Keycode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keycode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B044E67C1D6CE3A2002F763B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B044E6821D6CE3A2002F763B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -200,6 +206,9 @@
 				B0FF2C751D6E5DDF00E556E8 /* UserDefaults.swift */,
 				B0FF2CBF1D6FA41F00E556E8 /* FileManager.swift */,
 				B0FF2CC81D70030300E556E8 /* Bundle.swift */,
+				89E26BCE1D70708600909137 /* Services.swift */,
+				89E26BD01D70789500909137 /* Repo.swift */,
+				89E26BD21D70868600909137 /* Themes.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -343,13 +352,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0FF2CBC1D6E94E900E556E8 /* Theme.swift in Sources */,
+				89E26BCF1D70708600909137 /* Services.swift in Sources */,
 				B0FF2C9F1D6E94E900E556E8 /* BundleManager.swift in Sources */,
 				B0FF2CA61D6E94E900E556E8 /* ReferenceManager.swift in Sources */,
 				B0FF2CC01D6FA41F00E556E8 /* FileManager.swift in Sources */,
 				B0FF2CA71D6E94E900E556E8 /* Repository.swift in Sources */,
 				B07A04B91D6D3A8100FEA96B /* WindowController.swift in Sources */,
 				B0FF2C761D6E5DDF00E556E8 /* UserDefaults.swift in Sources */,
+				89E26BD31D70868600909137 /* Themes.swift in Sources */,
 				B0FF2CA21D6E94E900E556E8 /* Color.swift in Sources */,
+				89E26BD11D70789500909137 /* Repo.swift in Sources */,
 				B0FF2CA91D6E94E900E556E8 /* Result.swift in Sources */,
 				B044E67D1D6CE3A2002F763B /* AppDelegate.swift in Sources */,
 				B0FF2CA11D6E94E900E556E8 /* CaptureCollection.swift in Sources */,
